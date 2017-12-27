@@ -1,17 +1,21 @@
-#ifdef __SCREENMANAGER_HPP__
+#ifndef __SCREENMANAGER_HPP__
 #define __SCREENMANAGER_HPP__
 
 #include "Screen.hpp"
 #include <vector>
 #include <string>
 
-class ScreenManager(){
+class ScreenManager{
 	private:
 		std::string name;
-		ScreenList<Screen>;
+		std::vector<Screen> ScreenList;
 
 	public:
 		ScreenManager();
-}
+		ScreenManager(std::string aName);
+		void CreateNewScreen();
+		int GetNumberOfScreens();
+		void DeleteScreen(int IndexOfScreen);
+};
 
 #endif
