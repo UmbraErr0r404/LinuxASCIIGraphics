@@ -1,11 +1,11 @@
-#ifdef __SCREEN_HPP__
+#ifndef __SCREEN_HPP__
 #define __SCREEN_HPP__
 
-class Screen(){
+class Screen{
 	private:
 
 	public:
-		Screen(){};
-}
+		Screen();
+};
 
 #endif
