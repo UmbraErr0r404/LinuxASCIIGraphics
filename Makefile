@@ -18,7 +18,7 @@ TAGS:
 .PHOMY:mains
 mains:
 	@for f in `ls *.c*` ; do \
-		if etags $$f -o - | grep "int main(" - > /dev/null; \
+		if etags -o - $$f | grep "int main(" - > /dev/null; \
 			then echo $$f | sed -e 's/[.][^.]*$$/.bin/' -e 's/.*/make --no-print-directory &/' |sh; \
 		fi ; \
 	done
