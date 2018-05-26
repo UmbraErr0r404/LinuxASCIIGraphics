@@ -1,4 +1,4 @@
-#include "ScreenManager.hpp"
+//#include "ScreenManager.hpp"
 #include <chrono> //time
 #include <iostream>
 #include <ncurses.h> //base graphics
@@ -8,19 +8,37 @@
 
 using namespace std::chrono_literals;
 
+class Window {
+private:
+  int height;
+  int width;
+  WINDOW *win;
+
+public:
+  Window() {
+    initscr();
+    // set height and width to there maxiums
+    getmaxyx(stdscr, height, width);
+    win = newwin(height, width, 0, 0);
+  }
+  void DrawChar(int x, int y, char var) {
+    wmove(win, x, y);
+    waddch(win, var);
+  }
+  void Refresh() { wrefresh(win); }
+};
+
 int main(/*int argc, char **argv*/) {
 
-  int h, w;
+  // waddstr(win, "Hello World!");
+  Window Hello;
+  Hello.DrawChar(2, 2, '?');
+  Hello.Refresh();
+  Window Cat;
+  Cat.DrawChar(3,3, '@');
+  Cat.Refresh();
+  Hello.Refresh();
 
-  initscr();
-  getmaxyx(stdscr, h, w);
-
-  WINDOW *win = newwin(h, w, 0, 0);
-
-  wmove(win, 2, 2);
-  waddstr(win, "Hello World!");
-  waddch(win, '?');
-  wrefresh(win);
   std::this_thread::sleep_for(10s);
   endwin();
 
